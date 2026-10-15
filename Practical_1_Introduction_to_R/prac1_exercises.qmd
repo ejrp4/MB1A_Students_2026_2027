@@ -2,6 +2,12 @@
 title: "Pract 1 Exercises"
 author: "Edward Pedropillai"
 ---
+Load in necessary packages 
+```{r}
+library(tidyverse)
+library(gt)
+```
+
 This is to practise using the round function
 ```{r}
 num_1 <-  3.14159 
@@ -54,5 +60,39 @@ print(is.na(x))
 print(is.nan(x))
 print(round(2.5))
 print(round(3.5))
+```
+Using Vectors 
+```{r}
+cell_ID <- c(cell_ID_1, cell_ID_2)
+treated <- c(treated_1, treated_2)
+num_cells_before <- c(num_cells_before_1, num_cells_before_2)
+num_cells_after <- c(num_cells_after_1, num_cells_after_2)
+```
+
+Accessing Vectors 
+```{r}
+all_my_pets <- c("dog", "horse", "guinea pig", "chicken", "cat")  
+fav_pet <- all_my_pets[4]
+print (fav_pet)
+
+```
+Vectorisation 
+```{r}
+x <- c(2, -4, 6, -2)
+x*2 
+x>5 
+sum(x)
+abs(x)
+```
+Data Frames 
+```{r}
+my_data_frame <- tibble(
+  cell_ID <- cell_ID, 
+  treated <- treated, 
+  num_cells_before <- num_cells_before, 
+  num_cells_after <- num_cells_after 
+)
+
+gt(my_data_frame)
 ```
 

@@ -1,0 +1,48 @@
+---
+title: "ukhsa_data_analysis"
+author: "Edward Pedropillai"
+---
+Load in required packages 
+```{r}
+library(tidyverse)
+library(gt)
+```
+Load in HIV Data 
+```{r}
+#This will load in the first 10 lines of the data for HIV cases till end of 2024
+HIV_Data <- read_csv("data/ukhsa-chart-download.csv")
+gt(head(HIV_Data))
+```
+Using an API 
+```{r}
+#load in required package 
+library("httr2")
+url <- "https://api.ukhsa-dashboard.data.gov.uk/themes/infectious_disease/sub_themes/gastrointestinal/topics/C-difficile/geography_types/Nation/geographies/England/metrics/c-difficile_cases_countsByOnsetType"
+url <- paste0(url, "?page_size=365")
+print(url)
+api_request <- request(url)
+response <- req_perform(api_request)
+json_response <- resp_body_json(response)
+str(json_response, max.level = 1)
+results_df <- bind_rows(json_response$results)
+gt(head(results_df))
+# Filter to a single value of stratum
+filt <- filter(results_df, stratum == "Total cases")
+
+# Display
+gt(filt)
+```
+Making a Graph 
+```{r}
+ggplot(HIV_Data, aes(
+  x = date,
+  y = metric_value
+)) +
+  geom_line(colour = "red") +
+  xlab("Date") +
+  ylab("Number of New HIV Diagnoses") +
+  ggtitle("New HIV Diagnoses by Year") + 
+  theme_dark()
+  
+```
+
