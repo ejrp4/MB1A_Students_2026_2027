@@ -1,0 +1,20 @@
+---
+title: "hpa_quarto"
+author: "Edward Pedropillai"
+---
+# Elevated Gene Expression in Mammal Forebrains
+The human protein atlas maps all human proteins. 
+This page is finding the total number of genes with regionally elevated expression in the forebrain in **humans, pigs and mice**
+The forebrain includes the cerebral cortex, basal ganglia, thalamus and hypothalamus
+```{r}
+total_elevated_forebrain_genes_humans <- sum(180, 83, 57, 110)
+print(total_elevated_forebrain_genes_humans)
+
+total_elevated_forebrain_genes_pigs <- sum(109, 157, 31, 45)
+print(total_elevated_forebrain_genes_pigs)
+
+total_elevated_forebrain_genes_mouse <- sum(55, 185, 60, 98)
+print(total_elevated_forebrain_genes_mouse)
+
+print("Humans had the highest number of genes with regionally elevated expression in the forebrain")
+```
